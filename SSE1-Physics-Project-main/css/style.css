@@ -1,0 +1,295 @@
+/* ======== GLOBAL MODERN DARK THEME ======== */
+:root {
+  --bg: #0f0f10;
+  --panel: #1a1a1b;
+  --panel-alt: #161616;
+  --border: #232323;
+  --text: #d1d1d1;
+  --text-soft: #aaaaaa;
+  --accent: #3b82f6;
+  --accent-soft: #60a5fa;
+  --shadow: 0 0 20px rgba(0,0,0,0.35);
+  --radius: 8px;
+  --radius-small: 5px;
+  --radius-large: 12px;
+}
+
+body {
+  margin: 0;/* Grundreset & Dark Theme Basis */
+  body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #1e1e1e;
+    color: #cccccc;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    overflow: hidden;
+  }
+
+  /* --- TOP BAR --- */
+  #top-bar {
+    height: 50px;
+    background: #2d2d2d;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    border-bottom: 1px solid #1e1e1e;
+    justify-content: space-between;
+  }
+
+  .branding { color: #fff; font-size: 1rem; }
+  .menu-item { margin-right:15px; font-size: 0.9rem; cursor: pointer; }
+  .menu-item:hover { color: #fff; }
+
+  .sim-controls button {
+    background: none; border: none; cursor: pointer; font-size: 1.2rem; margin: 0 8px; color: #ccc;
+  }
+  .sim-controls button:hover { color: #fff; transform: scale(1.1); }
+
+  /* --- HAUPTLAYOUT (3 Spalten) --- */
+  #workspace { display: flex; flex: 1; overflow: hidden; }
+
+  /* SPALTE 1: File Explorer */
+  #file-explorer {
+    width: 250px;
+    background: #252526;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* FILE TREE STYLES (Das Neue) */
+  .explorer-header {
+    padding: 10px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #bbb;
+    text-transform: uppercase;
+  }
+
+  .file-tree { padding-top: 5px; font-size: 0.9rem; }
+  .tree-item { cursor: pointer; }
+  .tree-label {
+    padding: 4px 10px;
+    display: flex; align-items: center; gap: 8px;
+    white-space: nowrap;
+  }
+  .tree-label:hover { background-color: #2a2d2e; color: #fff; }
+  .tree-item.file.active .tree-label { background-color: #37373d; color: #fff; }
+  .tree-children { padding-left: 18px; border-left: 1px solid #333; }
+  .tree-label i { width: 15px; text-align: center; font-size: 0.85rem; }
+
+
+  /* SPALTE 2: Center Pane (Editor + Konsole) */
+  #center-pane { flex: 1; display: flex; flex-direction: column; min-width: 300px; }
+
+  #editor-tabs { height: 35px; background: #2d2d2d; display: flex; align-items: center; }
+  .tab {
+    padding: 8px 15px; background: #2d2d2d; font-size:0.9rem; cursor: pointer; border-right: 1px solid #1e1e1e;
+  }
+  .tab.active { background: #1e1e1e; color: #fff; border-top: 2px solid #007acc; }
+
+  #editor-area { flex: 1; position: relative; }
+  #editor {
+    width: 100%; height: 100%; border: none; background: #1e1e1e;
+    color: #d4d4d4; resize: none; padding: 10px; font-family: 'Consolas', monospace; outline: none;
+    box-sizing: border-box;
+  }
+
+  #console { height: 150px; background: #1e1e1e; border-top: 1px solid #3e3e3e; padding: 10px; font-family: monospace; }
+  .console-header { font-size: 0.8rem; color: #666; margin-bottom: 5px; text-transform: uppercase;}
+
+  /* SPALTE 3: Preview */
+  #preview { width: 400px; background: #000; display: flex; justify-content: center; align-items: center; }
+  #sim-canvas { background: #111; width: 100%; height: 100%; }
+
+  /* RESIZER (Griffe) */
+  .resizer { width: 4px; background: #333; cursor: col-resize; z-index: 10; }
+  .resizer:hover { background: #007acc; }
+  .resizer-hor { height: 4px; background: #333; cursor: row-resize; z-index: 10; width: 100%; }
+  .resizer-hor:hover { background: #007acc; }
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter", sans-serif;
+}
+
+/* ======== TOP MENUBAR ======== */
+#menubar {
+  height: 42px;
+  background: rgba(26, 26, 27, 0.75);
+  backdrop-filter: blur(12px);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.menu-item {
+  margin-right: 24px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: var(--radius-small);
+  color: var(--text-soft);
+  transition: 0.15s ease;
+}
+
+.menu-item:hover {
+  background: var(--panel-alt);
+  color: var(--text);
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: absolute;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-top: 10px;
+  padding: 8px 0;
+  display: none;
+  min-width: 170px;
+  box-shadow: var(--shadow);
+}
+
+.menu-item:hover .dropdown {
+  display: block;
+}
+
+.dropdown div {
+  padding: 10px 15px;
+  cursor: pointer;
+  color: var(--text-soft);
+  transition: 0.15s ease;
+}
+
+.dropdown div:hover {
+  background: var(--panel-alt);
+  color: var(--accent);
+}
+
+/* ======== LAYOUT ======== */
+#main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ======== FILE EXPLORER ======== */
+#file-explorer {
+  width: 230px;
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  padding: 15px;
+  overflow-y: auto;
+  box-shadow: inset -4px 0 10px rgba(0,0,0,0.25);
+}
+
+.file-item {
+  padding: 8px 12px;
+  border-radius: var(--radius-small);
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.file-item:hover {
+  background: var(--panel-alt);
+  color: var(--text);
+}
+
+/* ======== EDITOR AREA ======== */
+#editor-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+}
+
+/* Tabs */
+#tabs {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel-alt);
+}
+
+.tab {
+  padding: 8px 14px;
+  background: var(--panel);
+  border-radius: var(--radius-small);
+  margin-right: 8px;
+  cursor: pointer;
+  color: var(--text-soft);
+  transition: 0.15s ease;
+}
+
+.tab:hover {
+  background: var(--panel-alt);
+}
+
+.tab.active {
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+}
+
+.close-btn {
+  margin-left: 6px;
+  color: #ff5555;
+  cursor: pointer;
+}
+
+/* Editor */
+#editor {
+  flex: 1;
+  background: var(--bg);
+  color: var(--text);
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 18px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ======== PREVIEW ======== */
+#preview {
+  width: 350px;
+  background: var(--panel);
+  border-left: 1px solid var(--border);
+  padding: 15px;
+  overflow-y: auto;
+}
+
+/* ======== CONSOLE ======== */
+#console {
+  height: 160px;
+  background: var(--panel-alt);
+  border-top: 1px solid var(--border);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+#console-output {
+  flex: 1;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+#console-input {
+  margin-top: 10px;
+  padding: 8px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-small);
+  color: var(--text);
+  font-family: monospace;
+}

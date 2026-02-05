@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physics IDE</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header id="top-bar">
+  <div class="branding">
+    <i class="fa-solid fa-atom"></i> <strong>PhysIDE</strong>
+  </div>
+
+  <div id="menubar">
+    <span class="menu-item">File</span>
+    <span class="menu-item">Edit</span>
+    <span class="menu-item">View</span>
+  </div>
+
+  <div class="sim-controls">
+    <button title="Run" id="btn-run"><i class="fa-solid fa-play" style="color: #4CAF50;"></i></button>
+    <button title="Pause" id="btn-pause"><i class="fa-solid fa-pause"></i></button>
+    <button title="Reset" id="btn-reset"><i class="fa-solid fa-rotate-right"></i></button>
+  </div>
+
+  <div class="user-profile">
+    <i class="fa-solid fa-gear"></i>
+  </div>
+</header>
+
+<div id="workspace">
+
+  <aside id="file-explorer">
+    <div class="explorer-header">EXPLORER</div>
+
+    <div class="file-tree">
+      <div class="tree-item folder open">
+        <div class="tree-label">
+          <i class="fa-solid fa-chevron-down"></i>
+          <i class="fa-regular fa-folder-open"></i>
+          Physics-Project
+        </div>
+
+        <div class="tree-children">
+          <div class="tree-item folder">
+            <div class="tree-label">
+              <i class="fa-solid fa-chevron-right"></i>
+              <i class="fa-regular fa-folder"></i>
+              css
+            </div>
+          </div>
+
+          <div class="tree-item folder open">
+            <div class="tree-label">
+              <i class="fa-solid fa-chevron-down"></i>
+              <i class="fa-regular fa-folder-open"></i>
+              js
+            </div>
+
+            <div class="tree-children">
+              <div class="tree-item file active">
+                <div class="tree-label">
+                  <i class="fa-brands fa-js" style="color: #f1c40f;"></i>
+                  simulation.js
+                </div>
+              </div>
+              <div class="tree-item file">
+                <div class="tree-label">
+                  <i class="fa-brands fa-js" style="color: #f1c40f;"></i>
+                  engine.js
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tree-item file">
+            <div class="tree-label">
+              <i class="fa-brands fa-html5" style="color: #e67e22;"></i>
+              index.html
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="resizer" id="resizer-left"></div>
+
+  <section id="center-pane">
+    <div id="editor-tabs">
+      <div class="tab active">simulation.js</div>
+    </div>
+
+    <div id="editor-area">
+      <textarea id="editor" placeholder="// Write your physics code here..."></textarea>
+    </div>
+
+    <div class="resizer-hor" id="resizer-console"></div>
+
+    <div id="console">
+      <div class="console-header">Output Console:</div>
+      <div id="console-output">> Ready...</div>
+    </div>
+  </section>
+
+  <div class="resizer" id="resizer-right"></div>
+
+  <aside id="preview">
+    <canvas id="sim-canvas"></canvas>
+  </aside>
+
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
